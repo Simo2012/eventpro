@@ -1,0 +1,10 @@
+version: '2'
+services:
+  eventpro:
+    image: php:7.0-cli
+    volumes:
+      - ./:/var/www
+    ports:
+      - "80:80"
+    command: php bin/console server:run 0.0.0.0:80
+    working_dir: /var/www
