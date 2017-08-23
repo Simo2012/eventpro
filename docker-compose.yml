@@ -8,3 +8,22 @@ services:
       - "80:80"
     command: php bin/console server:run 0.0.0.0:80
     working_dir: /var/www
+    links:
+      - database:database
+  database:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=eventpro
+      - MYSQL_USER=simo
+      - MYSQL_PASSWORD=simo
+      - MYSQL_ROOT_PASSWORD=root
+    #volumes:
+     # - ./data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - "database:db"
+    ports:
+      - "8080:80"
+
+
